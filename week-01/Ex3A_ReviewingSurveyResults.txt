@@ -1,0 +1,76 @@
+1. How tall are you?
+
+a) What conclusion can you reach about the responses to this question?
+Most students are between 5'0" and 6'2". There is a wide variety, but the data is very inconsistent in format, making it hard to analyze without cleaning
+
+b) Is the default summary or visualization helpful? How could it be improved?
+Not very helpful because it shows a long list of text answers. After doing some research and asking a couple different Ais like ChatGPT and Grok, I came to the conclusion that a bar chart or histogram after standardizing to inches or cm would be much better.
+c) For questions with an “Other” option, where can you find the actual text of those responses? Do you notice anything that might be tricky about analyzing these? 
+There was no other option for this question.
+d) For questions calling for a written response, what challenges do you notice about finding trends or patterns in the answers provided? 
+I found that people used multiple formats instead of just feet or cm regarding height.
+e) Now that you can see the responses, how might you recommend rephrasing this or question or the response options in a future survey? 
+I would make the response text box only allow feet or cm, if that is not a possible option, Id explicitly say to keep the format in only feet in the text prompt given to the person.
+
+2. How many years’ experience do you have with Excel?
+
+a) What conclusion can you reach about the responses to this question?
+This shows me how unclean data can be as some people didn’t respond to that at all, some only put numbers and others put sentences explaining context, giving an inconsistent format again.
+b) Is the default summary or visualization helpful? How could it be improved?
+Again it is not very helpful as it shows a long list of text answers like the previous column turning it into a mandatory multiple choice giving 0, 1-2, 3-5, 5-9, and 10 would have helped a lot more.
+c) For questions with an “Other” option, where can you find the actual text of those responses? Do you notice anything that might be tricky about analyzing these? 
+There was no other option for this question.
+d) For questions calling for a written response, what challenges do you notice about finding trends or patterns in the answers provided? 
+I found that people used multiple formats again, instead of just saying the years in numbers or typing in a text response.
+e) Now that you can see the responses, how might you recommend rephrasing this or question or the response options in a future survey? 
+I would make it a mandatory multiple choice giving an array of years [0, 1-2,3-5,5-9, 10] and make them must choose from this.
+
+3. How many years of corporate experience do you have?
+
+a) What conclusion can you reach about the responses to this question?
+This shows me once again how unclean data can be, once again some people didn’t respond to it at all, some only put numbers and others put sentences explaining context, giving an inconsistent format again.
+      b) Is the default summary or visualization helpful? How could it be improved?
+The answer is the same as the last question; it is not very helpful and can be made better by making it a mandatory multiple choice.
+c)For questions with an “Other” option, where can you find the actual text of those responses? Do you notice anything that might be tricky about analyzing these? 
+There was no other option for this question.
+d) For questions calling for a written response, what challenges do you notice about         finding trends or patterns in the answers provided? 
+I found that people used multiple formats again, instead of just saying the years in numbers or typing in a text response.
+f) Now that you can see the responses, how might you recommend rephrasing this or question or the response options in a future survey? 
+I would again make it a mandatory multiple choice giving an array of years [0, 1-2,3-5,5-9, 10] and make them choose from this.
+
+4. What gender do you identify as?
+a) What conclusion can you reach about the responses to this question?
+The format is consistent and stays as either ‘man’ or ‘woman’, this is the first good response list of rows I have seen.
+b) Is the default summary or visualization helpful? How could it be improved?
+Yes, it looks amazing and visually pleasing to see the consistent format.
+c) For questions with an “Other” option, where can you find the actual text of those responses? Do you notice anything that might be tricky about analyzing these? 
+There was no other option for this question.
+d) For questions calling for a written response, what challenges do you notice about finding trends or patterns in the answers provided? 
+I found that people used the same format and it was kept consistent, I think this was a multiple-choice question if I remember correctly.
+e) Now that you can see the responses, how might you recommend rephrasing this or question or the response options in a future survey? 
+I wouldn’t change the response.
+5. Which of the following best describes your current status?
+a) What conclusion can you reach about the responses to this question?
+The same conclusion as last time, the format was great, it was multiple choice like last time.
+
+b) Is the default summary or visualization helpful? How could it be improved?
+It was very helpful and straight forward as last questions format and response, wouldn’t improve it in any way.
+
+c) For questions with an “Other” option, where can you find the actual text of those responses? Do you notice anything that might be tricky about analyzing these? 
+There was no other option for this question.
+
+d) For questions calling for a written response, what challenges do you notice about finding trends or patterns in the answers provided? 
+It did not have a written response, it was multiple choice.
+e) Now that you can see the responses, how might you recommend rephrasing this or question or the response options in a future survey?
+I wouldn’t change it at all and keep it the same layout.
+Next respond to the below questions: 
+6. Is there anything that surprised you about the survey responses? 
+Not really, it was pretty straight forward, the only surprising aspect was the terrible format inconsistency, that being said I believe it was made that way intentionally to show us the difference between bad and good formatting as we will probably be working with survey data that will eventually get turned into raw table data that might end up looking this atrocious, so well learn not only how to spot and distinguish a good survey format, but how to also make a good survey format before hand if we are creating it and also know how to clean it up. (which I assume will be eventually taught to us of course, you just want to familiarize us with it)
+
+7. Looking at the responses to questions 1 and 5, are there any ideas you might try to include in your morning routine, or any questions that you are also curious about?
+Not that I can think of.
+
+8. Pretend you are the instructor. Is there anything you can learn from this survey to help in how you approach teaching this class? 
+This feels similar to the last question but maybe I just really like the idea of I would ask the class one more question, that question would be “what is your passion and why?” as I would love to know the inner desires and passions of those I am teaching as I believe it is vital to knowing someone.
+9. Again, pretend you are the instructor. Do you think it was helpful or not helpful to make this survey anonymous? Why or why not? (If you can see both pros and cons, you may include both.)
+it was both in some ways good and bad as I believe in the choice of anonymity, but if I was a teacher, I would make all tell me who they are so I know more about the person who is responding.
