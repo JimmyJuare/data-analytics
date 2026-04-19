@@ -47,3 +47,12 @@ rental → (via inventory_id) → inventory → (via film_id) → film
 By joining these three tables together on their common keys (inventory_id and film_id), I can 
 retrieve the names (titles) of all films that were rented on any specific date.
 */
+
+SELECT rental_date, inventory_id 
+FROM rental;
+
+SELECT inventory_id, film_id 
+FROM inventory;
+
+SELECT film_id, title 
+FROM film;
