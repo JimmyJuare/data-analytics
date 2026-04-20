@@ -1,0 +1,84 @@
+Overall Assessment
+You started with a classic denormalized (flat) dump containing redundant information repeated across rows (e.g., the same venue details, contact info, and address appearing for every event at that venue).
+You've made a solid first attempt at normalization by splitting the data into separate tables. This reduces duplication compared to the flat version, which is good progress. However, the current structure is not fully normalized yet (roughly 2NF with some 3NF issues) and has several design problems that could cause data anomalies, inconsistencies, or maintenance headaches later.
+1. Events Table (Good start, but incomplete)
+Current columns: EventId, Event Name, Event Date, Event Category, Event Manager
+Strengths:
+
+EventId is a natural primary key (unique and stable).
+Core event attributes are cleanly separated.
+
+Issues & Recommendations:
+
+Missing foreign keys — There is no link to Venue or Location. Add VenueID (referencing the Venue table) so you know which venue hosts each event.
+Event Category is stored as text (Music, Comedy, etc.). Since the flat data also had a Category Code, consider creating a separate Categories table (CategoryCode PK, CategoryName) and store only the code here. This prevents typos and makes it easy to add new categories.
+Event Manager is just a name. If managers can manage multiple events (which they do here), this should reference an Employees table instead.
+Event Date is stored as a number (e.g., 46095). This looks like an Excel serial date. Convert it to a proper DATE type in your database for easier querying (e.g., find all events in 2026).
+
+2. Venue Table (Has redundancy and duplication)
+Current columns: Venue ID, Venue Location, Venue Contact Name, Venue Email, Venue Phone, Location Address, Venue Phone (duplicate column)
+Strengths:
+
+VenueID is a good surrogate/natural key.
+Contact details are grouped together.
+
+Issues & Recommendations:
+
+Redundancy: Location Address is repeated here, but you already have a separate Location table. Remove the address from Venue — venues should only reference Location via a foreign key.
+Duplicate rows: Downtown Convention Center and Starlight Bar appear twice. This is a classic insertion anomaly risk.
+The second Venue Phone column is unnecessary.
+Better structure:
+VenueID (PK)
+VenueName (e.g., Starlight Bar)
+VenueContactName
+VenueEmail
+VenuePhone
+LocationID (FK → Location table)
+
+
+This would eliminate the repeated address data.
+3. Location Table (Mostly good, but could be improved)
+Current columns: Primary_ID, Location Address, Location City, Location State, Location Zip
+Strengths:
+
+You correctly extracted the address components.
+Primary_ID acts as a surrogate key.
+
+Issues & Recommendations:
+
+Duplicate addresses exist (e.g., Downtown Convention Center address appears twice, same for Starlight Bar). This happens because multiple events share the same physical location.
+Consider making a composite key or unique constraint on (Address, City, State, Zip) to prevent accidental duplicates.
+The address has a leading space in some rows ( 1847 Sunset Boulevard) — clean that up.
+In a real database, you might split further into a full address normalization if needed (street, city, state, zip as separate fields with proper types), but this level is usually sufficient.
+
+4. Missing Pieces (The 4th table? section)
+You correctly identified that something is missing. Here's what I recommend adding:
+
+Employees / Event Managers table
+Employee# (PK, e.g., u0156)
+EmployeeName
+Email
+Possibly: Role, Phone, etc.
+
+Categories table (optional but recommended)
+CategoryCode (PK)
+CategoryName
+
+Event-Venue relationship — Handled by adding VenueID to the Events table (many events can happen at one venue).
+
+Summary of Normalization Level & Suggested Final Schema
+Proposed 3NF-friendly structure:
+
+Categories (CategoryCode PK, CategoryName)
+Employees (Employee# PK, EmployeeName, Email)
+Locations (LocationID PK, Address, City, State, Zip)
+Venues (VenueID PK, VenueName, ContactName, ContactEmail, ContactPhone, LocationID FK)
+Events (EventID PK, EventName, EventDate, CategoryCode FK, Employee# FK (manager), VenueID FK)
+
+Other Feedback
+
+Data quality: Some names have extra spaces (e.g.,  Maria Riley). Clean data during import.
+Keys: Use consistent naming (e.g., EventID vs EventId) and make sure every table has a clear primary key.
+Relationships: The biggest gap right now is the lack of foreign keys linking Events → Venues → Locations and Events → Employees.
+Scalability: With this design, adding a new event at an existing venue becomes simple and consistent (no repeated address/contact data).
+Next steps: If you move this to a real database (SQL), define proper constraints, data types, and indexes on the foreign keys.
