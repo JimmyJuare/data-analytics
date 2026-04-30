@@ -5,6 +5,11 @@ Below each question, write your response, including relevant SQL queries.
 Make sure the questions and plain-language answers are commented out!
 */
 SELECT * FROM sales;
+SELECT * FROM products WHERE vendor_name ILIKE '%hennessy%';
+
+SELECT COUNT(*) AS conv_store_coun,
+convenience_store FROM sales
+GROUP BY convenience_store;
 -- SELECT, Filtering & Sorting
 -- 1. Create a list of all transactions for your chosen vendor that took place in
 -- the last quarter of 2014, sorted by the total sale amount from highest to lowest.
@@ -25,24 +30,66 @@ WHERE bottle_qty > 12
 -- keyword (e.g., 'Limited', 'Spiced'). What categories do they belong to?
 -- (Opportunity: Identifying niche product variants).
 
-SELECT COUNT(*) AS items_count, category_name AS category, item_description AS description
+SELECT COUNT(*) AS items_count,
+category_name AS category,
+item_description AS description
 FROM products
 WHERE item_description 
 ILIKE ANY(ARRAY['%Limited%','%Spiced%','%Premium%'])
-GROUP BY category_name;
+GROUP BY category_name, item_description;
 -- Aggregation
 -- 4. What is the total sales revenue and the average bottle price (btl_price) for
--- your chosen [Category/Vendor]?
+-- your chosen Vendor?
+SELECT SUM(total) AS sum_total,
+ROUND(AVG(btl_price::NUMERIC)) AS avg_price
+FROM sales
+WHERE vendor
+ILIKE '%hennessy%'
 -- (Strength/Baseline: Establishing the financial footprint).
 -- 5. How many transactions were recorded for each specific item description within your
--- chosen [Category]? Which specific product is the most frequently purchased?
--- (Strength: Identifying your "hero" product).
--- 6. Which store generated the highest total revenue for your [Category/Vendor]?
--- Which generated the lowest (but still greater than zero)?
--- (Strength vs. Weakness: Identifying your best and worst retail partners).
--- 7. What is the total revenue for every vendor within your chosen [Category],
+-- chosen Vendor?
+SELECT
+COUNT(*) count_of_trans_per_dscrptn, item_description, vendor_name
+FROM products
+WHERE vendor_name ILIKE '%hennessy%'
+GROUP BY item_description, vendor_name
+ORDER BY count_of_trans_per_dscrptn DESC;
+-- Which specific product is the most frequently purchased?
+--answer: Hennessy Vs Congnac and Belvedere Vodka were both purchased most frequently
 
+-- (Strength: Identifying your "hero" product).
+
+-- 6. Which store generated the highest total revenue for your Vendor?
+SELECT DISTINCT store AS store_id, SUM(total)::money AS highest_revenue
+FROM sales
+WHERE vendor ILIKE '%hennessy%'
+GROUP BY store
+ORDER BY highest_revenue DESC LIMIT 1;
+-- Which generated the lowest (but still greater than zero)?
+SELECT DISTINCT store AS store_id, 
+SUM(total)::money AS lowest_revenue
+FROM sales
+WHERE vendor ILIKE '%hennessy%'
+GROUP BY store
+ORDER BY lowest_revenue ASC LIMIT 1;
+-- (Strength vs. Weakness: Identifying your best and worst retail partners).
+
+-- 7. What is the total revenue for every vendor within your chosen [Category],
 -- sorted from highest to lowest?
+/*
+note: Since I got a vendor[Moet Hennessy] and not a category I am going to assume you 
+want me to actually give the total revenue for every CATEGORY within my given vendor, 
+unless you want me to choose a category from the sales table and then give total revenue
+related to every vendor in that regard, I'll just do both just in cast.
+*/
+
+/* first part of the problem based on given vendor in relation to this question:
+7a - What is the total revenue for every Category within your given Vendor,
+sorted from highest to lowest?
+*/
+SELECT * FROM s;
+
+
 -- (Threat: Identifying your top competitors in that space).
 -- 8. Which stores had total sales revenue for your [Category/Vendor] exceeding $2,000?
 -- (Hint: Use HAVING to filter aggregated store totals).
