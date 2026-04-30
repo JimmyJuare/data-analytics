@@ -192,26 +192,60 @@ or I can even use an ANY(ARRAY[]) expression. I chose to do both for the practic
 although the most practical in this scenario would be to use the IN statement.
 */
 
---impractical way
-SELECT category_name, vendor 
-	FROM sales 
-	WHERE category_name ILIKE
-		ANY(ARRAY['FLAVORED VODKA','VODKA 80 PROOF', 'IMPORTED VODKA'])
-		GROUP BY category_name, vendor;
 --practical way
-SELECT category_name, vendor 
-FROM sales 
-	WHERE category_name 
+SELECT 
+	category_name, 
+	vendor 
+FROM 
+	sales 
+WHERE 
+	category_name 
 		IN('FLAVORED VODKA',
 		   'VODKA 80 PROOF',
 		   'IMPORTED VODKA')
-
+--impractical way
+SELECT 
+	category_name, 
+	vendor 
+FROM 
+	sales 
+WHERE 
+	category_name ILIKE ANY(ARRAY['FLAVORED VODKA','VODKA 80 PROOF', 'IMPORTED VODKA'])
+GROUP BY 
+	category_name, 
+	vendor;
 -- 10. List all transactions where the state bottle cost was between $10 and $20 for
 -- your [Category/Vendor].
--- (Opportunity: Analyzing performance in the "mid-tier" price bracket).
+SELECT
+	state_btl_cost,
+	store
+FROM
+	sales
+WHERE state_btl_cost < 20::money AND state_btl_cost > 10::money
+ORDER BY state_btl_cost ASC;
+-- (Opportunity: Analyzing performance in the "mid-tier" price bracket)
+
 -- 11. Write a query that displays each store's total sales for your [Category/Vendor]
 -- along with the store's name and address from the stores_table.
+SELECT
+st.name,
+st.store_address,
+SUM(sl.total)::money AS total_sales
+FROM stores st JOIN sales sl ON sl.store = st.store
+WHERE sl.vendor ILIKE '%hennessy%'
+GROUP BY st.name, st.store_address;
+
+
 -- (Strength: Mapping your physical sales footprint).
--- 12. For each sale in your [Category], display the transaction date, total amount,
+-- 12. For each sale in your Vendor, display the transaction date, total amount,
 -- and the population of the county where the sale occurred by joining with counties_table.
+SELECT
+	sl.date,
+	sl.total,
+	ct.population,
+	ct.county
+FROM 
+	sales sl JOIN counties ct ON sl.county = ct.county
+GROUP BY 
+	sl.date, sl.total,ct.population, ct.county;
 -- (Opportunity: Correlating sales volume with population density)
