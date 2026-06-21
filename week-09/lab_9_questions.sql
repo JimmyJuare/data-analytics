@@ -1,6 +1,3 @@
-use northwind;
-
-USE northwind;
 
 USE northwind;
 
