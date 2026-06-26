@@ -5,16 +5,10 @@ This Power BI report analyzes four years of sales data for **EmporiUm**, a virtu
 
 The goal is to provide actionable insights to the regional sales team (director, territory managers, and store managers) to support better business decision-making.
 
-## Key Visualizations
-
-- **Sales Trends Over Time**: Line chart displaying total sales across the full four-year period
-- **Sales Performance by Category**: Column/Bar chart showing revenue by product category
-- **Sales by State**: Pie/Donut chart illustrating relative sales contribution by state in the region
-- **Top-Selling Books**: Table/list of top general audience books (excluding textbooks) with author names
 
 ## Report Structure
-- **Page 1**: Executive Overview & Sales Trends
-- **Page 2**: Category & Geographic Analysis + Top Books
+- **Page 1**: Executive Dashboard
+- **Page 2**: Category Analysis + Top Books
 
 Each page includes clear, descriptive headers.
 
@@ -29,24 +23,23 @@ Each page includes clear, descriptive headers.
 - Separate text file with book titles and author information for general audience books
 
 ## Key Insights
-(You can customize this section with your actual findings, for example:)
 - Strong year-over-year sales growth with seasonal peaks
-- [Category] is the top-performing category in the region
-- [State] drives the majority of regional revenue
+-  Study Guides is the top-performing category in the region
+- Maryland drives the majority of regional revenue
 - Top authors and books identified for inventory and marketing focus
 
 ## How to Access the Report
 The final report is published to the Year Up United class workspace in **Power BI Service**.
 
-**Live Report Link**: [Add your published Power BI report link here]
+**Live Report Link**: https://app.powerbi.com/links/8hqZYZVUdm?ctid=bbce5c37-f181-4d0c-9310-7f877336e1cf&pbi_source=linkShare
 
 ## Video Presentation
-**10-minute Project Walkthrough**: [Add link to your video recording here]
+**10-minute Project Walkthrough**: https://youtu.be/JFxdnO2OdqA
 
 ## Repository Contents
-- `YourLastName_capstone3.pbix` – Power BI report file
+- `Juarez_capstone3.pbix` – Power BI report file
 - Capstone project documentation (this README)
-- Data files (if included)
+- Data files
 
 ---
 
