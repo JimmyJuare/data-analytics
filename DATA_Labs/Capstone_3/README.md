@@ -54,3 +54,5 @@ The final report is published to the Year Up United class workspace in **Power B
 **Author**: Teodoro Jimmy Juarez  
 **Year Up United Data Analytics Training Academy** – Week 12 Capstone 3 
 **Date**: June 26th 2026
+
+**side note** I had to remake the repo as my last repo was having issues, I also didnt create a dedicated repo for this capstone until later as I was pushing to the main root data_analytics repo on my github, so that is why this repo is new as I checked and made sure it was set up per the instructions. thank you
